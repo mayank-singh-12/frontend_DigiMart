@@ -4,12 +4,11 @@ import useProducts from "../contexts/ProductsContext";
 import useWishlist from "../contexts/WishlistContext";
 import useCart from "../contexts/CartContext";
 import AddWishlist from "../components/AddWishlist";
+import AddCart from "../components/AddCart";
 import WishList from "./Wishlist";
 
 export default function ProductsListing() {
   const { filteredProducts, productLoading, productError } = useProducts();
-  const { cart, setCart } = useCart();
-  const navigate = useNavigate();
 
   function printCategories(categoriesArrObj) {
     const categoriesArr = categoriesArrObj.reduce((acc, curr) => {
@@ -17,30 +16,6 @@ export default function ProductsListing() {
       return acc;
     }, []);
     return categoriesArr.join(", ");
-  }
-
-  function AddCart({ product }) {
-    const inCart = cart.some((p) => p._id == product._id);
-
-    function handleCart(product) {
-      if (!inCart) {
-        setCart((prev) => [...prev, { ...product, quantity: 1 }]);
-      }
-    }
-
-    return (
-      <>
-        {inCart ? (
-          <button className="btn btn-primary" onClick={() => navigate("/cart")}>
-            Go to Cart
-          </button>
-        ) : (
-          <button className="btn btn-light" onClick={() => handleCart(product)}>
-            Add to Cart
-          </button>
-        )}
-      </>
-    );
   }
 
   console.log(filteredProducts);
