@@ -25,11 +25,6 @@ export default function ProductDetail() {
     }
   }, [data]);
 
-  const discountedPrice =
-    productData && Math.ceil((productData.price * productData.discount) / 100);
-
-  //   const description = productData.description;
-
   function updateQuantity(product, operator) {
     if (operator === "inc") {
       setProductData((prev) => ({ ...prev, quantity: product.quantity + 1 }));

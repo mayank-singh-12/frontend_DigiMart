@@ -18,7 +18,8 @@ export function ProductProvider({ children }) {
     const actualPrice = product.price;
     const discountRate = product.discount / 100;
     const discountedPrice = Math.ceil(actualPrice - actualPrice * discountRate);
-    return { ...product, discountedPrice };
+    const quantity = 1;
+    return { ...product, discountedPrice, quantity };
   });
 
   useEffect(() => {

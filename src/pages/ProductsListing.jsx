@@ -1,11 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ProductFilter from "../components/ProductFilter";
 import useProducts from "../contexts/ProductsContext";
-import useWishlist from "../contexts/WishlistContext";
-import useCart from "../contexts/CartContext";
 import AddWishlist from "../components/AddWishlist";
 import AddCart from "../components/AddCart";
-import WishList from "./Wishlist";
 
 export default function ProductsListing() {
   const { filteredProducts, productLoading, productError } = useProducts();
