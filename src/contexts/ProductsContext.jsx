@@ -19,7 +19,16 @@ export function ProductProvider({ children }) {
     const discountRate = product.discount / 100;
     const discountedPrice = Math.ceil(actualPrice - actualPrice * discountRate);
     const quantity = 1;
-    return { ...product, discountedPrice, quantity };
+    const selectedColor = product.models.color[0] || undefined;
+    const selectedStorage = product.models.storage[0] || undefined;
+
+    return {
+      ...product,
+      discountedPrice,
+      quantity,
+      selectedColor,
+      selectedStorage,
+    };
   });
 
   useEffect(() => {

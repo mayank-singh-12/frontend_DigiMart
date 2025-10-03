@@ -64,115 +64,119 @@ export default function Cart() {
   const discountAmount = totalPrice - totalDiscountedPrice;
   const deliveryCharges = 499;
   const totalAmount = totalDiscountedPrice + deliveryCharges;
+
+  console.log(cart);
   return (
     <>
       <div className="row">
         <h1 className="text-center">My Cart ({cart.length})</h1>
-        {cart.length === 0 && (
+        {cart.length === 0 ? (
           <p className="text-center mt-5">No products in the Cart.</p>
-        )}
-        <div className="row">
-          <div className="col-8">
-            {cart.map((product) => (
-              <div key={product._id}>
-                <div className="card shadow mb-3 bg-body-tertiary">
-                  <div className="row">
-                    <div className="col-4">
-                      <img
-                        className="img-fluid rounded-start"
-                        src={product.images[0]}
-                        alt={product.title}
-                      />
-                    </div>
-                    <div className="col-8">
-                      <div className="mx-5 my-5">
-                        <p className="fs-2">{product.title}</p>
-                        <div className="d-flex align-items-baseline gap-3">
-                          <span className="fw-bold fs-1">
-                            ${product.discountedPrice}
-                          </span>
-                          <span className="text-secondary text-decoration-line-through fs-4">
-                            ${product.price}
-                          </span>
-                        </div>
-                        <p className="fw-bold fs-2 text-secondary">
-                          {product.discount}% off
-                        </p>
-                        {/* Quantity */}
-                        <div className="d-flex align-items-center">
-                          <span className="fs-4 me-3">Quantity: </span>
+        ) : (
+          <div className="row">
+            <div className="col-8">
+              {cart.map((product) => (
+                <div key={product._id}>
+                  <div className="card shadow mb-3 bg-body-tertiary">
+                    <div className="row">
+                      <div className="col-4">
+                        <img
+                          className="img-fluid rounded-start"
+                          src={product.images[0]}
+                          alt={product.title}
+                        />
+                      </div>
+                      <div className="col-8">
+                        <div className="mx-5 my-5">
+                          <p className="fs-2">{product.title}</p>
+                          <div className="d-flex align-items-baseline gap-3">
+                            <span className="fw-bold fs-1">
+                              ${product.discountedPrice}
+                            </span>
+                            <span className="text-secondary text-decoration-line-through fs-4">
+                              ${product.price}
+                            </span>
+                          </div>
+                          <p className="fw-bold fs-2 text-secondary">
+                            {product.discount}% off
+                          </p>
+                          {/* Quantity */}
+                          <div className="d-flex align-items-center">
+                            <span className="fs-4 me-3">Quantity: </span>
+                            <button
+                              className="btn btn-light"
+                              onClick={() => updateQuantity(product, "dec")}
+                              disabled={product.quantity <= 1}
+                            >
+                              {" "}
+                              -{" "}
+                            </button>
+                            <span className="px-3">{product.quantity}</span>
+                            <button
+                              className="btn btn-light"
+                              onClick={() => updateQuantity(product, "inc")}
+                            >
+                              +
+                            </button>
+                          </div>
                           <button
-                            className="btn btn-light"
-                            onClick={() => updateQuantity(product, "dec")}
-                            disabled={product.quantity <= 1}
+                            className="mt-3 btn btn-outline-danger"
+                            onClick={() => removeFromCart(product)}
                           >
-                            {" "}
-                            -{" "}
+                            Remove From Cart
                           </button>
-                          <span className="px-3">{product.quantity}</span>
-                          <button
-                            className="btn btn-light"
-                            onClick={() => updateQuantity(product, "inc")}
-                          >
-                            +
-                          </button>
-                        </div>
-                        <button
-                          className="mt-3 btn btn-outline-danger"
-                          onClick={() => removeFromCart(product)}
-                        >
-                          Remove From Cart
-                        </button>
-                        <br />
+                          <br />
 
-                        <button
-                          className="mt-3 btn btn-outline-warning"
-                          onClick={() => moveToWishlist(product)}
-                        >
-                          Move to Wishlist
-                        </button>
+                          <button
+                            className="mt-3 btn btn-outline-warning"
+                            onClick={() => moveToWishlist(product)}
+                          >
+                            Move to Wishlist
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-          <div className="col-4">
-            <div className="card position-sticky shadow bg-body-tertiary">
-              <div className="card-body">
-                <h4>PRICE DETAILS</h4>
-                <hr />
-                <div className="d-flex justify-content-between fs-5">
-                  <span>
-                    Price ({cart.length} {cart.length <= 1 ? "item" : "items"})
-                  </span>
-                  <span>${totalDiscountedPrice}</span>
-                </div>
-                <div className="d-flex justify-content-between fs-5">
-                  <span>Discount</span>
-                  <span>-${discountAmount}</span>
-                </div>
-                <div className="d-flex justify-content-between fs-5">
-                  <span>Delivery Charges</span>
-                  <span>${deliveryCharges}</span>
-                </div>
-                <hr />
-                <div className="d-flex justify-content-between align-items-baseline fs-5">
-                  <span className="fw-medium fs-4">TOTAL AMOUNT</span>
-                  <span className="fw-medium fs-4">${totalAmount}</span>
-                </div>
-                <hr />
-                <p className="fs-5">
-                  You will save ${discountAmount} on this order.
-                </p>
-                <div className="d-flex flex-column">
-                  <button className="btn btn-primary">PLACE ORDER</button>
+              ))}
+            </div>
+            <div className="col-4">
+              <div className="card position-sticky shadow bg-body-tertiary">
+                <div className="card-body">
+                  <h4>PRICE DETAILS</h4>
+                  <hr />
+                  <div className="d-flex justify-content-between fs-5">
+                    <span>
+                      Price ({cart.length} {cart.length <= 1 ? "item" : "items"}
+                      )
+                    </span>
+                    <span>${totalDiscountedPrice}</span>
+                  </div>
+                  <div className="d-flex justify-content-between fs-5">
+                    <span>Discount</span>
+                    <span>-${discountAmount}</span>
+                  </div>
+                  <div className="d-flex justify-content-between fs-5">
+                    <span>Delivery Charges</span>
+                    <span>${deliveryCharges}</span>
+                  </div>
+                  <hr />
+                  <div className="d-flex justify-content-between align-items-baseline fs-5">
+                    <span className="fw-medium fs-4">TOTAL AMOUNT</span>
+                    <span className="fw-medium fs-4">${totalAmount}</span>
+                  </div>
+                  <hr />
+                  <p className="fs-5">
+                    You will save ${discountAmount} on this order.
+                  </p>
+                  <div className="d-flex flex-column">
+                    <button className="btn btn-primary">PLACE ORDER</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

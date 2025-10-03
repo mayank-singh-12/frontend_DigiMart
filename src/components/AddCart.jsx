@@ -19,7 +19,7 @@ export default function AddCart({ product }) {
           Go to Cart
         </button>
       ) : (
-        <button className="btn btn-light" onClick={() => handleCart(product)}>
+        <button className="btn btn-outline-light" onClick={() => handleCart(product)}>
           Add to Cart
         </button>
       )}

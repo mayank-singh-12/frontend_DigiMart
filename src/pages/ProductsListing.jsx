@@ -15,8 +15,6 @@ export default function ProductsListing() {
     return categoriesArr.join(", ");
   }
 
-  console.log(filteredProducts);
-
   return (
     <>
       <div className="row">
@@ -40,7 +38,7 @@ export default function ProductsListing() {
               <div className="row">
                 {filteredProducts.map((product) => (
                   <div className="col-3" key={product._id}>
-                    <div className="card shadow mb-5 bg-body-tertiary">
+                    <div className="card shadow mb-4 bg-body-tertiary">
                       <Link
                         to={`/products/${product._id}`}
                         style={{ textDecoration: "none", color: "white" }}
@@ -67,8 +65,10 @@ export default function ProductsListing() {
                           </div>
                         </div>
                       </Link>
-                      <AddWishlist product={product} />
-                      <AddCart product={product} />
+                      <div className="btn-group-vertical">
+                        <AddWishlist product={product} />
+                        <AddCart product={product} />
+                      </div>
                     </div>
                   </div>
                 ))}

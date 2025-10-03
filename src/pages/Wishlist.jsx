@@ -50,17 +50,23 @@ export default function Wishlist() {
     return categoriesArr.join(", ");
   }
 
-  function moveToCart(product) {
+  function addToCart(product) {
     const inCart = cart.some((p) => p._id === product._id);
-
     if (!inCart) {
       setCart((prev) => [...prev, { ...product, quantity: 1 }]);
       setCartMessage("Successfully added product in Cart!");
     } else {
-      setCartMessage("Product already present in the Cart!");
+      setCart((prev) =>
+        prev.map((p) => {
+          if (p._id === product._id) {
+            return { ...p, quantity: p.quantity + 1 };
+          }
+          return p;
+        })
+      );
     }
-    setWishlist((prev) => prev.filter((p) => p._id != product._id));
   }
+  console.log(cart);
   return (
     <>
       <div className="row text-center">
@@ -98,13 +104,15 @@ export default function Wishlist() {
                   </div>
                 </div>
               </Link>
-              <AddWishlist product={product} />
-              <button
-                className="btn btn-primary"
-                onClick={() => moveToCart(product)}
-              >
-                Move to cart
-              </button>
+              <div className="btn-group-vertical">
+                <AddWishlist product={product} />
+                <button
+                  className="btn btn-outline-light"
+                  onClick={() => addToCart(product)}
+                >
+                  Add to Cart
+                </button>
+              </div>
             </div>
           </div>
         ))}

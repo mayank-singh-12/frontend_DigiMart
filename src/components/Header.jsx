@@ -20,7 +20,7 @@ export default function Header() {
             </li>
             <li>
               <NavLink to="/cart" className="nav-link">
-                Cart ({cart.length})
+                Cart ({cart.reduce((acc, curr) => acc + curr.quantity, 0)})
               </NavLink>
             </li>
           </ul>
