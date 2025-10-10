@@ -1,3 +1,4 @@
+import Header from "../components/Header";
 import useCart from "../contexts/CartContext";
 import useAddress from "../contexts/AddressContext";
 import { useNavigate } from "react-router-dom";
@@ -217,6 +218,7 @@ export default function Checkout() {
 
   return (
     <>
+      <Header/>
       <div className="container-fluid mb-5">
         <h1 className="text-center">Checkout</h1>
         <div className="row">

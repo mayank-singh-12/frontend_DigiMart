@@ -1,5 +1,6 @@
 import useCart from "../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function AddCart({ product }) {
   const { cart, setCart } = useCart();
@@ -19,7 +20,13 @@ export default function AddCart({ product }) {
           Go to Cart
         </button>
       ) : (
-        <button className="btn btn-outline-light" onClick={() => handleCart(product)}>
+        <button
+          className="btn btn-outline-light"
+          onClick={() => {
+            toast.success("Product added to cart.");
+            handleCart(product);
+          }}
+        >
           Add to Cart
         </button>
       )}

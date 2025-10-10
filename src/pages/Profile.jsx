@@ -1,3 +1,4 @@
+import Header from "../components/Header";
 import useFetch from "../useFetch";
 import useAddress from "../contexts/AddressContext";
 
@@ -10,7 +11,8 @@ export default function Profile() {
 
   return (
     <>
-      <div className="mt-3">
+      <Header />
+      <div className="container-fluid mt-3">
         <div className="row">
           <div className="col-6">
             {/* User Details */}
@@ -68,15 +70,20 @@ export default function Profile() {
               <div className="card-header">
                 <h1 className="text-center">Past Orders</h1>
               </div>
-              <div
-                className="card-body d-flex flex-column overflow-auto"
-                style={{ height: "80vh" }}
-              >
+              <div>
                 {loading && (
-                  <p className="text-center justify-self-center">Loading...</p>
+                  <div
+                    className="card-body d-flex flex-column overflow-auto justify-content-center"
+                    style={{ height: "80vh" }}
+                  >
+                    <p className="text-center">Loading...</p>
+                  </div>
                 )}
                 {data && (
-                  <div>
+                  <div
+                    className="card-body d-flex flex-column overflow-auto"
+                    style={{ height: "80vh" }}
+                  >
                     {data.orders.map((order) => (
                       <div className="card mb-3" key={order._id}>
                         <div className="card-body">

@@ -1,3 +1,4 @@
+import Header from "../components/Header";
 import useCart from "../contexts/CartContext";
 import useAddress from "../contexts/AddressContext";
 import check from "../assets/check.png";
@@ -6,6 +7,7 @@ export default function OrderSuccess() {
   const navigate = useNavigate();
   return (
     <>
+      <Header />
       <div className="container text-center">
         <img
           src={check}

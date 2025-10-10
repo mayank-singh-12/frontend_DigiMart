@@ -8,26 +8,27 @@ export default function useProducts() {
 }
 
 export function ProductProvider({ children }) {
-  const [filteredProducts, setFilteredProducts] = useState([]);
-
   const { data, loading, error } = useFetch(
     "https://backend-digi-mart.vercel.app/products"
   );
+
+  // FILTER VARS
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [categoryFilter, setCategoryFilter] = useState([]); // ["Mobiles", "Laptops"]
+  const [priceFilter, setPriceFilter] = useState(0);
+  const [ratingFilter, setRatingFilter] = useState(0);
+  const [priceSort, setPriceSort] = useState(null); // "desc" / "asc"
+  const [search, setSearch] = useState("");
 
   const products = data.products?.map((product) => {
     const actualPrice = product.price;
     const discountRate = product.discount / 100;
     const discountedPrice = Math.ceil(actualPrice - actualPrice * discountRate);
     const quantity = 1;
-    const selectedColor = product.models.color[0] || undefined;
-    const selectedStorage = product.models.storage[0] || undefined;
-
     return {
       ...product,
       discountedPrice,
       quantity,
-      selectedColor,
-      selectedStorage,
     };
   });
 
@@ -45,6 +46,16 @@ export function ProductProvider({ children }) {
         productError: error,
         filteredProducts,
         setFilteredProducts,
+        categoryFilter,
+        setCategoryFilter,
+        priceFilter,
+        setPriceFilter,
+        ratingFilter,
+        setRatingFilter,
+        priceSort,
+        setPriceSort,
+        search,
+        setSearch,
       }}
     >
       {children}

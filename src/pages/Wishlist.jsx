@@ -1,8 +1,10 @@
+import Header from "../components/Header";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import useWishlist from "../contexts/WishlistContext";
 import AddWishlist from "../components/AddWishlist";
 import useCart from "../contexts/CartContext";
+import { toast } from "react-toastify";
 
 // function AddWishlist({ product }) {
 //   const { wishlist, setWishlist } = useWishlist();
@@ -66,56 +68,61 @@ export default function Wishlist() {
       );
     }
   }
-  console.log(cart);
   return (
     <>
-      <div className="row text-center">
-        <p>{cartMessage}</p>
-        <h1>My WishList</h1>
-        {wishlist.length === 0 && (
-          <p className="mt-5">No products in the Wishlist.</p>
-        )}
-        {wishlist.map((product) => (
-          <div className="col-2" key={product._id}>
-            <div className="card shadow mb-5 bg-body-tertiary">
-              <Link
-                to={`/products/${product._id}`}
-                style={{ textDecoration: "none", color: "white" }}
-              >
-                <img
-                  className="card-img-top"
-                  src={product.images[0]}
-                  alt={product.title}
-                />
-                <div className="card-body text-center">
-                  <p className="card-title">{product.title}</p>
-                  <p>
-                    <small className="text-body-secondary">
-                      {printCategories(product.category)}
-                    </small>
-                  </p>
-                  <div className="d-flex align-items-baseline justify-content-center gap-2">
-                    <span className="card-text fs-3 fw-bold">
-                      ${product.discountedPrice}
-                    </span>
-                    <span className="card-text text-muted text-decoration-line-through">
-                      ${product.price}
-                    </span>
-                  </div>
-                </div>
-              </Link>
-              <div className="btn-group-vertical">
-                <AddWishlist product={product} />
-                <button
-                  className="btn btn-outline-light"
-                  onClick={() => addToCart(product)}
+      <Header />
+      <div className="container-fluid">
+        <div className="row text-center">
+          <p>{cartMessage}</p>
+          <h1>My WishList</h1>
+          {wishlist.length === 0 && (
+            <p className="mt-5">No products in the Wishlist.</p>
+          )}
+          {wishlist.map((product) => (
+            <div className="col-2" key={product._id}>
+              <div className="card shadow mb-5 bg-body-tertiary">
+                <Link
+                  to={`/products/${product._id}`}
+                  style={{ textDecoration: "none", color: "white" }}
                 >
-                  Add to Cart
-                </button>
+                  <img
+                    className="card-img-top"
+                    src={product.images[0]}
+                    alt={product.title}
+                  />
+                  <div className="card-body text-center">
+                    <p className="card-title">{product.title}</p>
+                    <p>
+                      <small className="text-body-secondary">
+                        {printCategories(product.category)}
+                      </small>
+                    </p>
+                    <div className="d-flex align-items-baseline justify-content-center gap-2">
+                      <span className="card-text fs-3 fw-bold">
+                        ${product.discountedPrice}
+                      </span>
+                      <span className="card-text text-muted text-decoration-line-through">
+                        ${product.price}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+                <div className="btn-group-vertical">
+                  <AddWishlist product={product} />
+                  <button
+                    className="btn btn-outline-light"
+                    onClick={() => {
+                      toast.success("Product added to Cart!");
+                      addToCart(product);
+                    }}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </>
   );

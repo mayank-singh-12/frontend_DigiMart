@@ -1,18 +1,23 @@
+import Header from "../components/Header";
 import { useState, useEffect } from "react";
 import useFetch from "../useFetch";
 import useProducts from "../contexts/ProductsContext";
 import Slider from "@mui/material/Slider";
 
 export default function ProductFilter({ bootstrapClass }) {
-  const { products, setFilteredProducts, filteredProducts } = useProducts();
-
-  const [categoryFilter, setCategoryFilter] = useState([]); // ["Mobiles", "Laptops"]
-
-  const [priceFilter, setPriceFilter] = useState(0);
-
-  const [ratingFilter, setRatingFilter] = useState(0);
-
-  const [priceSort, setPriceSort] = useState(null); // "desc" / "asc"
+  const {
+    products,
+    setFilteredProducts,
+    categoryFilter,
+    setCategoryFilter,
+    priceFilter,
+    setPriceFilter,
+    ratingFilter,
+    setRatingFilter,
+    priceSort,
+    setPriceSort,
+    search,
+  } = useProducts();
 
   const { data, loading, error } = useFetch(
     "https://backend-digi-mart.vercel.app/categories"
@@ -65,8 +70,16 @@ export default function ProductFilter({ bootstrapClass }) {
         );
       }
     }
-    setFilteredProducts(productsSortedByPrice);
-  }, [categoryFilter, priceFilter, ratingFilter, priceSort]);
+
+    let productsBySearch = productsSortedByPrice;
+    if (search !== "") {
+      productsBySearch = productsBySearch.filter((product) =>
+        product.title.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    setFilteredProducts(productsBySearch);
+  }, [categoryFilter, priceFilter, ratingFilter, priceSort, search]);
 
   function clearFilters() {
     setCategoryFilter([]);
@@ -114,7 +127,7 @@ export default function ProductFilter({ bootstrapClass }) {
     <>
       {/* PRODUCT FILTERS */}
       <div className={bootstrapClass}>
-        <div className="card mt-4">
+        <div className="card mt-4 position-fixed" style={{ minWidth: "295px" }}>
           <div className="card-body">
             <h4 className="card-title">Filters</h4>
             {/* price  */}

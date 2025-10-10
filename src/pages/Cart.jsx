@@ -1,3 +1,4 @@
+import Header from "../components/Header";
 import { useState, useEffect } from "react";
 import useCart from "../contexts/CartContext";
 import { Link } from "react-router-dom";
@@ -68,7 +69,8 @@ export default function Cart() {
   console.log(cart);
   return (
     <>
-      <div className="container">
+      <Header />
+      <div className="container-fluid">
         <div className="row">
           <h1 className="text-center">My Cart ({cart.length})</h1>
           {cart.length === 0 ? (
@@ -79,16 +81,17 @@ export default function Cart() {
                 {cart.map((product) => (
                   <div key={product._id}>
                     <div className="card shadow mb-3 bg-body-tertiary">
-                      <div className="row">
-                        <div className="col-4">
+                      <div className="row g-0">
+                        <div className="col-4" style={{ height: "500px" }}>
                           <img
-                            className="img-fluid rounded-start"
+                            className="img-fluid w-100 h-100 rounded-start"
                             src={product.images[0]}
                             alt={product.title}
+                            style={{ objectFit: "cover" }}
                           />
                         </div>
-                        <div className="col-8">
-                          <div>
+                        <div className="col-8 d-flex flex-column justify-content-between">
+                          <div className="card-body">
                             <p className="fs-2 m-0">{product.title}</p>
                             <div className="d-flex align-items-baseline gap-3">
                               <span className="fw-bold fs-1">
@@ -120,20 +123,21 @@ export default function Cart() {
                                 +
                               </button>
                             </div>
-                            <div className="btn-group-vertical d-flex mt-4 me-4">
-                              <button
-                                className="btn btn-outline-danger"
-                                onClick={() => removeFromCart(product)}
-                              >
-                                Remove From Cart
-                              </button>
-                              <button
-                                className="btn btn-outline-warning"
-                                onClick={() => moveToWishlist(product)}
-                              >
-                                Move to Wishlist
-                              </button>
-                            </div>
+                          </div>
+
+                          <div className="btn-group-vertical d-flex px-3 mb-4">
+                            <button
+                              className="btn btn-outline-danger"
+                              onClick={() => removeFromCart(product)}
+                            >
+                              Remove From Cart
+                            </button>
+                            <button
+                              className="btn btn-outline-warning"
+                              onClick={() => moveToWishlist(product)}
+                            >
+                              Move to Wishlist
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -142,7 +146,10 @@ export default function Cart() {
                 ))}
               </div>
               <div className="col-4">
-                <div className="card position-sticky shadow bg-body-tertiary">
+                <div
+                  className="card position-fixed shadow bg-body-tertiary"
+                  style={{ minWidth: "32.5vw" }}
+                >
                   <div className="card-body">
                     <h4>PRICE DETAILS</h4>
                     <hr />

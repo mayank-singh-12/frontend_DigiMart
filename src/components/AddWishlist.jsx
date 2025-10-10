@@ -1,4 +1,5 @@
 import useWishlist from "../contexts/WishlistContext";
+import { toast } from "react-toastify";
 import { useState } from "react";
 
 export default function AddWishlist({ product }) {
@@ -17,14 +18,20 @@ export default function AddWishlist({ product }) {
       {isWishlisted ? (
         <button
           className="btn btn-outline-danger"
-          onClick={() => removeFromWishlist(product)}
+          onClick={() => {
+            toast.warn("Product removed from Wishlist !")
+            removeFromWishlist(product)
+          }}
         >
           Remove from Wishlist
         </button>
       ) : (
         <button
           className="btn btn-outline-warning"
-          onClick={() => addToWishlist(product)}
+          onClick={() => {
+            toast.success("Product Wishisted !");
+            addToWishlist(product);
+          }}
         >
           Add to Wishlist
         </button>
