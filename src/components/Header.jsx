@@ -5,7 +5,7 @@ import useCart from "../contexts/CartContext";
 import useProducts from "../contexts/ProductsContext";
 
 export default function Header({ searchBox = false }) {
-  const { search, setSearch } = useProducts();
+  const { search, setSearch, setCategoryFilter } = useProducts();
   const { wishlist } = useWishlist();
   const { cart } = useCart();
 
@@ -14,7 +14,13 @@ export default function Header({ searchBox = false }) {
       <header className="sticky-top shadow">
         <nav className="navbar navbar-expand-lg bg-black bg-gradient">
           <div className="container-fluid d-flex justify-content-between">
-            <NavLink to="/" className="navbar-brand fw-bold fs-3 mx-5 py-1">
+            <NavLink
+              to="/"
+              className="navbar-brand fw-bold fs-3 mx-5 py-1"
+              onClick={() => {
+                setCategoryFilter([]);
+              }}
+            >
               DigiMart
             </NavLink>
 
