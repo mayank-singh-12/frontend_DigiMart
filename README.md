@@ -66,12 +66,4 @@ Deployed Link: https://frontend-digi-mart.vercel.app/
 - Shows all the addresses.
 - Shows past orders.
 
-Frontend GitHub Link: https://github.com/mayank-singh-12/frontend_DigiMart
-Backend GitHub Link: https://github.com/mayank-singh-12/backend_DigiMart
 VIdeo Link: https://drive.google.com/file/d/1kJVI3qB8SCSSHhrzAu9Xv7qdCuEE09uQ/view?usp=sharing
-
-
-@abha7234 
-@ashiyaman 
-@akanksha.neog 
-@tanaypratap 
