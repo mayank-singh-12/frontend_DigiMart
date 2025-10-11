@@ -3,7 +3,7 @@ import useCart from "../contexts/CartContext";
 import useAddress from "../contexts/AddressContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Rating from "@mui/material/Rating";
+import { toast } from "react-toastify";
 
 export default function Checkout() {
   const { address, addressArr, setAddress, setAddressArr } = useAddress();
