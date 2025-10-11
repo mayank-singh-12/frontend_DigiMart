@@ -1,7 +1,9 @@
-import Header from "../components/Header";
-import { useState, useEffect } from "react";
-import useCart from "../contexts/CartContext";
+import { useState} from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+
+import Header from "../components/Header";
+import useCart from "../contexts/CartContext";
 import useWishlist from "../contexts/WishlistContext";
 
 export default function Cart() {
@@ -19,8 +21,6 @@ export default function Cart() {
     if (!inWishlist) {
       const { quantity, ...restProduct } = product;
       setWishlist((prev) => [...prev, restProduct]);
-    } else {
-      // TODO: add message if product is present in wishlist.
     }
     setCart((prev) => prev.filter((p) => p._id !== product._id));
   }
@@ -72,7 +72,7 @@ export default function Cart() {
       <Header />
       <div className="container-fluid">
         <div className="row">
-          <h1 className="text-center">My Cart ({cart.length})</h1>
+          <h1 className="text-center my-2">My Cart ({cart.length})</h1>
           {cart.length === 0 ? (
             <p className="text-center mt-5">No products in the Cart.</p>
           ) : (
@@ -128,13 +128,19 @@ export default function Cart() {
                           <div className="btn-group-vertical d-flex px-3 mb-4">
                             <button
                               className="btn btn-outline-danger"
-                              onClick={() => removeFromCart(product)}
+                              onClick={() => {
+                                removeFromCart(product);
+                                toast.warning("Product removed from cart!");
+                              }}
                             >
                               Remove From Cart
                             </button>
                             <button
                               className="btn btn-outline-warning"
-                              onClick={() => moveToWishlist(product)}
+                              onClick={() => {
+                                moveToWishlist(product);
+                                toast.success("Product moved to wishlist!");
+                              }}
                             >
                               Move to Wishlist
                             </button>

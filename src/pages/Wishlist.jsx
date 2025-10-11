@@ -1,6 +1,5 @@
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import useWishlist from "../contexts/WishlistContext";
 import AddWishlist from "../components/AddWishlist";
 import useCart from "../contexts/CartContext";
@@ -42,8 +41,6 @@ export default function Wishlist() {
   const { wishlist, setWishlist } = useWishlist();
   const { cart, setCart } = useCart();
 
-  const [cartMessage, setCartMessage] = useState(null);
-
   function printCategories(categoriesArrObj) {
     const categoriesArr = categoriesArrObj.reduce((acc, curr) => {
       acc.push(curr.name);
@@ -56,7 +53,6 @@ export default function Wishlist() {
     const inCart = cart.some((p) => p._id === product._id);
     if (!inCart) {
       setCart((prev) => [...prev, { ...product, quantity: 1 }]);
-      setCartMessage("Successfully added product in Cart!");
     } else {
       setCart((prev) =>
         prev.map((p) => {
@@ -73,8 +69,7 @@ export default function Wishlist() {
       <Header />
       <div className="container-fluid">
         <div className="row text-center">
-          <p>{cartMessage}</p>
-          <h1>My WishList</h1>
+          <h1 className="my-2">My WishList</h1>
           {wishlist.length === 0 && (
             <p className="mt-5">No products in the Wishlist.</p>
           )}

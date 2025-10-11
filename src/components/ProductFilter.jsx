@@ -1,5 +1,4 @@
-import Header from "../components/Header";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import useFetch from "../useFetch";
 import useProducts from "../contexts/ProductsContext";
 import Slider from "@mui/material/Slider";
@@ -92,15 +91,17 @@ export default function ProductFilter({ bootstrapClass }) {
   const categoriesList =
     data &&
     data.categories.map((category) => (
-      <div key={category._id}>
-        <label>
-          <input
-            type="checkbox"
-            name="category"
-            value={category.name}
-            checked={categoryFilter.includes(category.name)}
-            onChange={handleCategory}
-          />
+      <div class="form-check" key={category._id}>
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="category"
+          value={category.name}
+          id={category.name}
+          checked={categoryFilter.includes(category.name)}
+          onChange={handleCategory}
+        />
+        <label class="form-check-label" for={category.name}>
           {category.name}
         </label>
       </div>
@@ -162,15 +163,17 @@ export default function ProductFilter({ bootstrapClass }) {
             <div className="mt-2">
               <h5>Rating</h5>
               {ratings.map((rating) => (
-                <div key={rating.value}>
-                  <label>
-                    <input
-                      type="radio"
-                      name="priceFilter"
-                      value={rating.value}
-                      checked={ratingFilter == rating.value}
-                      onChange={(e) => setRatingFilter(e.target.value)}
-                    />
+                <div class="form-check" key={rating.value}>
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="priceFilter"
+                    id={rating.value}
+                    value={rating.value}
+                    checked={ratingFilter == rating.value}
+                    onChange={(e) => setRatingFilter(e.target.value)}
+                  />
+                  <label class="form-check-label" for={rating.value}>
                     {rating.tag}
                   </label>
                 </div>
@@ -181,14 +184,17 @@ export default function ProductFilter({ bootstrapClass }) {
             <div className="mt-2">
               <h5>Sort</h5>
               {sortArr.map((sort) => (
-                <div key={sort.value}>
-                  <label>
-                    <input
-                      type="radio"
-                      value={sort.value}
-                      checked={priceSort === sort.value}
-                      onChange={(e) => setPriceSort(sort.value)}
-                    />
+                <div class="form-check" key={sort.value}>
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="priceSort"
+                    value={sort.value}
+                    id={sort.value}
+                    checked={priceSort === sort.value}
+                    onChange={(e) => setPriceSort(sort.value)}
+                  />
+                  <label class="form-check-label" for={sort.value}>
                     {sort.tag}
                   </label>
                 </div>

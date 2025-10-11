@@ -16,7 +16,7 @@ export default function Header({ searchBox = false }) {
           <div className="container-fluid d-flex justify-content-between">
             <NavLink
               to="/"
-              className="navbar-brand fw-bold fs-3 mx-5 py-1"
+              className="navbar-brand fw-bold fs-3 ms-1 py-1"
               onClick={() => {
                 setCategoryFilter([]);
               }}
@@ -28,7 +28,7 @@ export default function Header({ searchBox = false }) {
             {searchBox && (
               <div className="input-group" style={{ width: "400px" }}>
                 <span className="input-group-text">
-                  <i class="bi bi-search"></i>
+                  <i className="bi bi-search"></i>
                 </span>
                 <input
                   className="form-control me-2"
@@ -42,21 +42,63 @@ export default function Header({ searchBox = false }) {
             )}
 
             {/* Rest Links */}
-            <div>
+            <div className="me-1">
               <ul className="nav">
                 <li className="nav-item">
-                  <NavLink to="/wishlist" className="nav-link">
-                    Wishlist ({wishlist.length})
+                  <NavLink
+                    to="/wishlist"
+                    className="nav-link p-0 position-relative me-3"
+                  >
+                    <i className="bi bi-bag-heart-fill fs-4 text-light"></i>
+                    {wishlist.length > 0 && (
+                      // <small className="position-absolute bg-danger text-light rounded px-1 start-100 translate-middle">
+
+                      // </small>)}
+
+                      <div
+                        className="position-absolute bg-danger rounded-circle top-0 start-100 translate-middle d-flex justify-content-center align-items-center mt-1"
+                        style={{
+                          width: "20px",
+                          height: "20px",
+                        }}
+                      >
+                        <p
+                          className="text-light m-0"
+                          style={{ fontSize: "12px" }}
+                        >
+                          {wishlist.length}
+                        </p>
+                      </div>
+                    )}
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/cart" className="nav-link">
-                    Cart ({cart.reduce((acc, curr) => acc + curr.quantity, 0)})
+                  <NavLink
+                    to="/cart"
+                    className="nav-link p-0 position-relative me-3"
+                  >
+                    <i className="bi bi-cart-fill fs-4 text-light"></i>
+                    {cart.reduce((acc, curr) => acc + curr.quantity, 0) > 0 && (
+                      <div
+                        className="position-absolute bg-danger rounded-circle top-0 start-100 translate-middle d-flex justify-content-center align-items-center mt-1"
+                        style={{
+                          width: "20px",
+                          height: "20px",
+                        }}
+                      >
+                        <p
+                          className="text-light m-0"
+                          style={{ fontSize: "12px" }}
+                        >
+                          {cart.reduce((acc, curr) => acc + curr.quantity, 0)}
+                        </p>
+                      </div>
+                    )}
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/profile" className="nav-link">
-                    Profile
+                  <NavLink to="/profile" className="nav-link p-0">
+                    <i className="bi bi-person-circle fs-4 text-light"></i>
                   </NavLink>
                 </li>
               </ul>

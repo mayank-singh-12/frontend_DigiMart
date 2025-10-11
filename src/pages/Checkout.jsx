@@ -197,10 +197,6 @@ export default function Checkout() {
       console.log(error);
     }
   }
-  // console.log(cart)
-  // placeOrder()
-
-  // console.log(address);
 
   const cartProducts = cart.map((product) => (
     <div
@@ -220,7 +216,7 @@ export default function Checkout() {
     <>
       <Header/>
       <div className="container-fluid mb-5">
-        <h1 className="text-center">Checkout</h1>
+        <h1 className="text-center my-2">Checkout</h1>
         <div className="row">
           <div className="col-6">
             {/* Address */}

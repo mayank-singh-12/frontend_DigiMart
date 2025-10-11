@@ -7,6 +7,7 @@ import AddCart from "../components/AddCart";
 
 export default function ProductsListing() {
   const { filteredProducts, productLoading, productError } = useProducts();
+
   function printCategories(categoriesArrObj) {
     const categoriesArr = categoriesArrObj.reduce((acc, curr) => {
       acc.push(curr.name);
@@ -34,7 +35,16 @@ export default function ProductsListing() {
                 )}
               </p>
 
-              {productLoading && <p>Loading...</p>}
+              {productLoading && (
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  style={{ width: "100%", height: "80vh" }}
+                >
+                  <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              )}
 
               {/* products */}
               {filteredProducts.length != 0 ? (

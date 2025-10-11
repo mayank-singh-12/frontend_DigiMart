@@ -73,10 +73,12 @@ export default function Profile() {
               <div>
                 {loading && (
                   <div
-                    className="card-body d-flex flex-column overflow-auto justify-content-center"
+                    className="card-body d-flex overflow-auto justify-content-center align-items-center"
                     style={{ height: "80vh" }}
                   >
-                    <p className="text-center">Loading...</p>
+                    <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
                   </div>
                 )}
                 {data && (
