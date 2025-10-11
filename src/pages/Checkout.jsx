@@ -3,6 +3,7 @@ import useCart from "../contexts/CartContext";
 import useAddress from "../contexts/AddressContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Rating from "@mui/material/Rating";
 
 export default function Checkout() {
   const { address, addressArr, setAddress, setAddressArr } = useAddress();
@@ -56,6 +57,7 @@ export default function Checkout() {
       editMode: false,
     };
     setAddressArr((prev) => [...prev, newAddress]);
+    toast.success("New Address added successfully.");
   }
 
   function deleteAddress(add) {
@@ -67,6 +69,7 @@ export default function Checkout() {
         setAddress((prev) => undefined);
       }
     }
+    toast.success("Address deleted successfully.");
   }
 
   function enterEditAddress(add) {
@@ -119,7 +122,7 @@ export default function Checkout() {
         country: editCountry,
       }));
     }
-
+    toast.success("Address edited successfully.");
     setEditId("");
     setEditName("");
     setEditHouseNo("");
@@ -214,7 +217,7 @@ export default function Checkout() {
 
   return (
     <>
-      <Header/>
+      <Header />
       <div className="container-fluid mb-5">
         <h1 className="text-center my-2">Checkout</h1>
         <div className="row">
