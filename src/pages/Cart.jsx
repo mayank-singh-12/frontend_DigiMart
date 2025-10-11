@@ -10,8 +10,6 @@ export default function Cart() {
   const { cart, setCart } = useCart();
   const { wishlist, setWishlist } = useWishlist();
 
-  const [order, setOrder] = useState({});
-
   function removeFromCart(product) {
     setCart((prev) => prev.filter((p) => p._id !== product._id));
   }

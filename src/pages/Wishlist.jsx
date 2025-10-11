@@ -38,7 +38,7 @@ import { toast } from "react-toastify";
 // }
 
 export default function Wishlist() {
-  const { wishlist, setWishlist } = useWishlist();
+  const { wishlist } = useWishlist();
   const { cart, setCart } = useCart();
 
   function printCategories(categoriesArrObj) {
