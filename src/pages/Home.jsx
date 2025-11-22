@@ -131,7 +131,7 @@ export default function Home() {
                                 <Rating
                                   defaultValue={starProduct.rating}
                                   precision={0.1}
-                                  size="large"
+                                  size="medium"
                                   readOnly
                                 />
                               </span>
