@@ -3,7 +3,7 @@ import useFetch from "../useFetch";
 import useProducts from "../contexts/ProductsContext";
 import Slider from "@mui/material/Slider";
 
-export default function ProductFilter({ bootstrapClass }) {
+export default function ProductFilter() {
   const {
     products,
     setFilteredProducts,
@@ -16,7 +16,10 @@ export default function ProductFilter({ bootstrapClass }) {
     priceSort,
     setPriceSort,
     search,
+    setSearch,
   } = useProducts();
+
+  // const { search, setSearch, setCategoryFilter } = useProducts();
 
   const { data, loading, error } = useFetch(
     "https://backend-digi-mart.vercel.app/categories"
@@ -127,89 +130,99 @@ export default function ProductFilter({ bootstrapClass }) {
   return (
     <>
       {/* PRODUCT FILTERS */}
-      <div className={bootstrapClass}>
-        <div className="card mt-4 position-fixed" style={{ minWidth: "295px" }}>
-          <div className="card-body">
-            <h4 className="card-title">Filters</h4>
-            {/* price  */}
-            <div>
-              <h5>Price</h5>
-              <div className="d-flex justify-content-between">
-                <span>0</span>
-                <span>{mostExpensiveProduct}</span>
-              </div>
-            </div>
+      {/* <div className="z-1">
+        <div className="card mt-4" style={{ minWidth: "295px" }}>
+          <div className="card-body"> */}
+      {/* <h4 className="card-title">Filters</h4> */}
 
-            <Slider
-              step={100}
-              value={priceFilter}
-              defaultValue={0}
-              min={0}
-              max={mostExpensiveProduct}
-              aria-label="Default"
-              valueLabelDisplay="on"
-              onChange={(e) => setPriceFilter(parseInt(e.target.value))}
-            />
+      {/* search */}
+      <div className="input-group mb-4">
+        <span className="input-group-text">
+          <i className="bi bi-search"></i>
+        </span>
+        <input
+          className="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
 
-            {/* category */}
-            <div className="mt-2">
-              <h5>Category</h5>
-              {loading && <p>Loading...</p>}
-              {categoriesList && <>{categoriesList}</>}
-              {error && <p>{error}</p>}
-            </div>
-
-            {/* rating */}
-            <div className="mt-2">
-              <h5>Rating</h5>
-              {ratings.map((rating) => (
-                <div class="form-check" key={rating.value}>
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="priceFilter"
-                    id={rating.value}
-                    value={rating.value}
-                    checked={ratingFilter == rating.value}
-                    onChange={(e) => setRatingFilter(e.target.value)}
-                  />
-                  <label class="form-check-label" for={rating.value}>
-                    {rating.tag}
-                  </label>
-                </div>
-              ))}
-            </div>
-
-            {/* sort by */}
-            <div className="mt-2">
-              <h5>Sort</h5>
-              {sortArr.map((sort) => (
-                <div class="form-check" key={sort.value}>
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="priceSort"
-                    value={sort.value}
-                    id={sort.value}
-                    checked={priceSort === sort.value}
-                    onChange={(e) => setPriceSort(sort.value)}
-                  />
-                  <label class="form-check-label" for={sort.value}>
-                    {sort.tag}
-                  </label>
-                </div>
-              ))}
-            </div>
-
-            <button
-              className="btn btn-outline-primary mt-4"
-              onClick={clearFilters}
-            >
-              Clear filters
-            </button>
-          </div>
+      {/* price  */}
+      <div>
+        <h5>Price</h5>
+        <div className="d-flex justify-content-between">
+          <span>0</span>
+          <span>{mostExpensiveProduct}</span>
         </div>
       </div>
+
+      <Slider
+        step={100}
+        value={priceFilter}
+        defaultValue={0}
+        min={0}
+        max={mostExpensiveProduct}
+        aria-label="Default"
+        valueLabelDisplay="on"
+        onChange={(e) => setPriceFilter(parseInt(e.target.value))}
+      />
+
+      {/* category */}
+      <div className="mt-2">
+        <h5>Category</h5>
+        {loading && <p>Loading...</p>}
+        {categoriesList && <>{categoriesList}</>}
+        {error && <p>{error}</p>}
+      </div>
+
+      {/* rating */}
+      <div className="mt-2">
+        <h5>Rating</h5>
+        {ratings.map((rating) => (
+          <div class="form-check" key={rating.value}>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="priceFilter"
+              id={rating.value}
+              value={rating.value}
+              checked={ratingFilter == rating.value}
+              onChange={(e) => setRatingFilter(e.target.value)}
+            />
+            <label class="form-check-label" for={rating.value}>
+              {rating.tag}
+            </label>
+          </div>
+        ))}
+      </div>
+
+      {/* sort by */}
+      <div className="mt-2">
+        <h5>Sort</h5>
+        {sortArr.map((sort) => (
+          <div class="form-check" key={sort.value}>
+            <input
+              class="form-check-input"
+              type="radio"
+              name="priceSort"
+              value={sort.value}
+              id={sort.value}
+              checked={priceSort === sort.value}
+              onChange={(e) => setPriceSort(sort.value)}
+            />
+            <label class="form-check-label" for={sort.value}>
+              {sort.tag}
+            </label>
+          </div>
+        ))}
+      </div>
+
+      <button className="btn btn-outline-primary mt-4" onClick={clearFilters}>
+        Clear filters
+      </button>
     </>
   );
 }

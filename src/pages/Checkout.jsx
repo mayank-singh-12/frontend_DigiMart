@@ -220,8 +220,56 @@ export default function Checkout() {
       <Header />
       <div className="container-fluid mb-5">
         <h1 className="text-center my-2">Checkout</h1>
-        <div className="row">
-          <div className="col-6">
+        <div className="row g-4">
+          {/* Bill  */}
+          <div className="col-md-6">
+            {/* Amount */}
+            <div className="list-group bg-light-subtle shadow">
+              <div className="list-group-item bg-body-secondary text-center">
+                <h1>
+                  {cart.length} {cart.length < 2 ? "ITEM" : "ITEMS"}
+                </h1>
+              </div>
+              {cartProducts}
+
+              <div className="list-group-item">
+                <div className="d-flex align-items-center justify-content-between">
+                  <span className="fw-bold fs-5">Sub-Total</span>
+                  <span className="fs-5">${subTotal}</span>
+                </div>
+                <div className="text-secondary d-flex align-items-center justify-content-between">
+                  <span className="fs-6">Delivery Charges</span>
+                  <span className="fs-6 text-success">
+                    + ${deliveryCharges}
+                  </span>
+                </div>
+                <div className="d-flex align-items-center justify-content-between">
+                  <span className="fw-bold fs-4">TOTAL TO PAY</span>
+                  <span className="fw-bold fs-4">${totalToPay}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Shipping Address */}
+            {address && (
+              <div className="card mt-4">
+                <div className="card-header">
+                  <h1 className="card-title">Shipping Address</h1>
+                </div>
+                <div className="card-body">
+                  <p className="card-text fs-2 fw-medium">{address.name}</p>
+                  <p className="card-text">
+                    {address.houseNo}, {address.streetAddress}
+                  </p>
+                  <p className="card-text">
+                    {address.city}, {address.state}, {address.country}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="col-md-6">
             {/* Address */}
             <div className="list-group">
               <div className="list-group-item bg-body-secondary text-center">
@@ -456,54 +504,6 @@ export default function Checkout() {
                 Place Order
               </button>
             </div>
-          </div>
-
-          {/* Bill  */}
-          <div className="col-6">
-            {/* Amount */}
-            <div className="list-group bg-light-subtle shadow">
-              <div className="list-group-item bg-body-secondary text-center">
-                <h1>
-                  {cart.length} {cart.length < 2 ? "ITEM" : "ITEMS"}
-                </h1>
-              </div>
-              {cartProducts}
-
-              <div className="list-group-item">
-                <div className="d-flex align-items-center justify-content-between">
-                  <span className="fw-bold fs-5">Sub-Total</span>
-                  <span className="fs-5">${subTotal}</span>
-                </div>
-                <div className="text-secondary d-flex align-items-center justify-content-between">
-                  <span className="fs-6">Delivery Charges</span>
-                  <span className="fs-6 text-success">
-                    + ${deliveryCharges}
-                  </span>
-                </div>
-                <div className="d-flex align-items-center justify-content-between">
-                  <span className="fw-bold fs-4">TOTAL TO PAY</span>
-                  <span className="fw-bold fs-4">${totalToPay}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Shipping Address */}
-            {address && (
-              <div className="card mt-4">
-                <div className="card-header">
-                  <h1 className="card-title">Shipping Address</h1>
-                </div>
-                <div className="card-body">
-                  <p className="card-text fs-2 fw-medium">{address.name}</p>
-                  <p className="card-text">
-                    {address.houseNo}, {address.streetAddress}
-                  </p>
-                  <p className="card-text">
-                    {address.city}, {address.state}, {address.country}
-                  </p>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>

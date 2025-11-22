@@ -25,8 +25,8 @@ export default function Header({ searchBox = false }) {
             </NavLink>
 
             {/* search */}
-            {searchBox && (
-              <div className="input-group" style={{ width: "400px" }}>
+            {/* {searchBox && (
+              <div className="input-group w-25" style={{ width: "400px" }}>
                 <span className="input-group-text">
                   <i className="bi bi-search"></i>
                 </span>
@@ -39,7 +39,7 @@ export default function Header({ searchBox = false }) {
                   onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
-            )}
+            )} */}
 
             {/* Rest Links */}
             <div className="me-1">

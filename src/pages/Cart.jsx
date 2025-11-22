@@ -68,129 +68,128 @@ export default function Cart() {
     <>
       <Header />
       <div className="container-fluid">
-        <div className="row">
-          <h1 className="text-center my-2">My Cart ({cart.length})</h1>
-          {cart.length === 0 ? (
-            <p className="text-center mt-5">No products in the Cart.</p>
-          ) : (
-            <div className="row">
-              <div className="col-8">
-                {cart.map((product) => (
-                  <div key={product._id}>
-                    <div className="card shadow mb-3 bg-body-tertiary">
-                      <div className="row g-0">
-                        <div className="col-4" style={{ height: "500px" }}>
-                          <img
-                            className="img-fluid w-100 h-100 rounded-start"
-                            src={product.images[0]}
-                            alt={product.title}
-                            style={{ objectFit: "cover" }}
-                          />
-                        </div>
-                        <div className="col-8 d-flex flex-column justify-content-between">
-                          <div className="card-body">
-                            <p className="fs-2 m-0">{product.title}</p>
-                            <div className="d-flex align-items-baseline gap-3">
-                              <span className="fw-bold fs-1">
-                                ${product.discountedPrice}
-                              </span>
-                              <span className="text-secondary text-decoration-line-through fs-4">
-                                ${product.price}
-                              </span>
-                            </div>
-                            <p className="fw-bold fs-3 m-0 text-secondary">
-                              {product.discount}% off
-                            </p>
-                            {/* Quantity */}
-                            <div className="d-flex mt-1 align-items-center">
-                              <span className="fs-4 me-3">Quantity: </span>
-                              <button
-                                className="btn btn-light"
-                                onClick={() => updateQuantity(product, "dec")}
-                                disabled={product.quantity <= 1}
-                              >
-                                {" "}
-                                -{" "}
-                              </button>
-                              <span className="px-3">{product.quantity}</span>
-                              <button
-                                className="btn btn-light"
-                                onClick={() => updateQuantity(product, "inc")}
-                              >
-                                +
-                              </button>
-                            </div>
-                          </div>
+        <h1 className="text-center my-2">My Cart ({cart.length})</h1>
 
-                          <div className="btn-group-vertical d-flex px-3 mb-4">
-                            <button
-                              className="btn btn-outline-danger"
-                              onClick={() => {
-                                removeFromCart(product);
-                                toast.warning("Product removed from cart!");
-                              }}
-                            >
-                              Remove From Cart
-                            </button>
-                            <button
-                              className="btn btn-outline-warning"
-                              onClick={() => {
-                                moveToWishlist(product);
-                                toast.success("Product moved to wishlist!");
-                              }}
-                            >
-                              Move to Wishlist
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+        {cart.length === 0 ? (
+          <p className="text-center mt-5">No products in the Cart.</p>
+        ) : (
+          <div className="row g-3">
+            <div className="col-md-4 col-12">
+              <div
+                className="card position-md-fixed shadow bg-body-tertiary"
+                style={{ minWidth: "32.5vw" }}
+              >
+                <div className="card-body">
+                  <h4>PRICE DETAILS</h4>
+                  <hr />
+                  <div className="d-flex justify-content-between fs-5">
+                    <span>
+                      Price ({cart.length} {cart.length <= 1 ? "item" : "items"}
+                      )
+                    </span>
+                    <span>${totalDiscountedPrice}</span>
                   </div>
-                ))}
-              </div>
-              <div className="col-4">
-                <div
-                  className="card position-fixed shadow bg-body-tertiary"
-                  style={{ minWidth: "32.5vw" }}
-                >
-                  <div className="card-body">
-                    <h4>PRICE DETAILS</h4>
-                    <hr />
-                    <div className="d-flex justify-content-between fs-5">
-                      <span>
-                        Price ({cart.length}{" "}
-                        {cart.length <= 1 ? "item" : "items"})
-                      </span>
-                      <span>${totalDiscountedPrice}</span>
-                    </div>
-                    <div className="d-flex justify-content-between fs-5">
-                      <span>Discount</span>
-                      <span>-${discountAmount}</span>
-                    </div>
-                    <div className="d-flex justify-content-between fs-5">
-                      <span>Delivery Charges</span>
-                      <span>${deliveryCharges}</span>
-                    </div>
-                    <hr />
-                    <div className="d-flex justify-content-between align-items-baseline fw-medium fs-4">
-                      <span>TOTAL AMOUNT</span>
-                      <span>${totalAmount}</span>
-                    </div>
-                    <hr />
-                    <p className="fs-5">
-                      You will save ${discountAmount} on this order.
-                    </p>
-                    <div className="d-flex flex-column">
-                      <Link to="/checkout" className="btn btn-primary">
-                        PLACE ORDER
-                      </Link>
-                    </div>
+                  <div className="d-flex justify-content-between fs-5">
+                    <span>Discount</span>
+                    <span>-${discountAmount}</span>
+                  </div>
+                  <div className="d-flex justify-content-between fs-5">
+                    <span>Delivery Charges</span>
+                    <span>${deliveryCharges}</span>
+                  </div>
+                  <hr />
+                  <div className="d-flex justify-content-between align-items-baseline fw-medium fs-4">
+                    <span>TOTAL AMOUNT</span>
+                    <span>${totalAmount}</span>
+                  </div>
+                  <hr />
+                  <p className="fs-5">
+                    You will save ${discountAmount} on this order.
+                  </p>
+                  <div className="d-flex flex-column">
+                    <Link to="/checkout" className="btn btn-primary">
+                      PLACE ORDER
+                    </Link>
                   </div>
                 </div>
               </div>
             </div>
-          )}
-        </div>
+            <div className="col-md-8 col-12">
+              {cart.map((product) => (
+                <div key={product._id}>
+                  <div className="card shadow mb-3 bg-body-tertiary">
+                    <div className="row g-0">
+                      <div className="col-4" style={{ height: "500px" }}>
+                        <img
+                          className="img-fluid w-100 h-100 rounded-start"
+                          src={product.images[0]}
+                          alt={product.title}
+                          style={{ objectFit: "cover" }}
+                        />
+                      </div>
+                      <div className="col-8 d-flex flex-column justify-content-between">
+                        <div className="card-body">
+                          <p className="fs-2 m-0">{product.title}</p>
+                          <div className="d-flex align-items-baseline gap-3">
+                            <span className="fw-bold fs-1">
+                              ${product.discountedPrice}
+                            </span>
+                            <span className="text-secondary text-decoration-line-through fs-4">
+                              ${product.price}
+                            </span>
+                          </div>
+                          <p className="fw-bold fs-3 m-0 text-secondary">
+                            {product.discount}% off
+                          </p>
+                          {/* Quantity */}
+                          <div className="d-flex mt-1 align-items-center">
+                            <span className="fs-4 me-3">Quantity: </span>
+                            <button
+                              className="btn btn-light"
+                              onClick={() => updateQuantity(product, "dec")}
+                              disabled={product.quantity <= 1}
+                            >
+                              {" "}
+                              -{" "}
+                            </button>
+                            <span className="px-3">{product.quantity}</span>
+                            <button
+                              className="btn btn-light"
+                              onClick={() => updateQuantity(product, "inc")}
+                            >
+                              +
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className="btn-group-vertical d-flex px-3 mb-4">
+                          <button
+                            className="btn btn-outline-danger"
+                            onClick={() => {
+                              removeFromCart(product);
+                              toast.warning("Product removed from cart!");
+                            }}
+                          >
+                            Remove From Cart
+                          </button>
+                          <button
+                            className="btn btn-outline-warning"
+                            onClick={() => {
+                              moveToWishlist(product);
+                              toast.success("Product moved to wishlist!");
+                            }}
+                          >
+                            Move to Wishlist
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

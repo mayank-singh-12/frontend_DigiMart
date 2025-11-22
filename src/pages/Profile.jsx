@@ -14,7 +14,7 @@ export default function Profile() {
       <Header />
       <div className="container-fluid mt-3">
         <div className="row">
-          <div className="col-6">
+          <div className="col-md-6">
             {/* User Details */}
             <div className="card">
               <div className="card-header">
@@ -64,7 +64,7 @@ export default function Profile() {
             )}
           </div>
 
-          <div className="col-6">
+          <div className="col-md-6 mt-md-0 mt-4">
             {/* Recent Orders */}
             <div className="card">
               <div className="card-header">
@@ -83,7 +83,7 @@ export default function Profile() {
                 )}
                 {data && (
                   <div
-                    className="card-body d-flex flex-column overflow-auto"
+                    className="card-body d-flex flex-column overflow-auto "
                     style={{ height: "80vh" }}
                   >
                     {data.orders.map((order) => (

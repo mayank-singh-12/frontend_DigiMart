@@ -48,9 +48,9 @@ export default function Home() {
         {/* Categories  */}
         {categories.length > 0 ? (
           <>
-            <div className="row">
+            <div className="row g-2">
               {categories.map((category) => (
-                <div className="col" key={category._id}>
+                <div className="col-md col-6 mb-2 m-0" key={category._id}>
                   <div className="card shadow" style={{ height: "100px" }}>
                     <Link
                       to="/products"
@@ -78,12 +78,12 @@ export default function Home() {
             {/* Explore all products */}
             <Link
               to="/products"
-              className="mt-4 card shadow position-relative d-flex justify-content-center align-items-center overflow-hidden"
-              style={{ height: "40vh" }}
+              className="card shadow position-relative d-flex justify-content-center align-items-center overflow-hidden"
+              style={{ height: "30vh" }}
             >
               <p
-                className="position-absolute z-1 fw-bold"
-                style={{ fontSize: "100px" }}
+                className="position-absolute z-1 fw-bold fs-1"
+                // style={{ fontSize: "50px"}}
               >
                 Explore All Products
               </p>
@@ -91,13 +91,14 @@ export default function Home() {
                 className="card-img opacity-25"
                 src="https://images.pexels.com/photos/12792220/pexels-photo-12792220.jpeg?_gl=1*3x4e6h*_ga*MjEwMzM5MjEyNy4xNzYwMDI2NjE1*_ga_8JE65Q40S6*czE3NjAwMjY2MTQkbzEkZzEkdDE3NjAwMjY3MjMkajIwJGwwJGgw"
                 alt=""
+                style={{ objectFit: "cover", height: "100%" }}
               />
             </Link>
 
-            <div className="row my-4">
+            <div className="row g-2 my-2">
               {/* Star product */}
               {starProduct && (
-                <div className="col-6">
+                <div className="col-md-6 mb-2 mb-md-0 m-0">
                   <div className="card bg-body-tertiary shadow">
                     <Link
                       to={`/products/${starProduct._id}`}
@@ -109,6 +110,7 @@ export default function Home() {
                             className="img-fluid rounded-start"
                             src={starProduct.images[0]}
                             alt={starProduct.title}
+                            style={{ objectFit: "cover", height: "100%" }}
                           />
                         </div>
                         <div className="col-8">
@@ -152,7 +154,7 @@ export default function Home() {
 
               {/* Most Discounted */}
               {mostDiscounted && (
-                <div className="col-6">
+                <div className="col-md-6 m-0">
                   <div className="card bg-body-tertiary shadow text-light">
                     <Link
                       to={`/products/${mostDiscounted._id}`}
@@ -164,6 +166,7 @@ export default function Home() {
                             className="img-fluid rounded-start"
                             src={mostDiscounted.images[0]}
                             alt={mostDiscounted.title}
+                            style={{ objectFit: "cover", height: "100%" }}
                           />
                         </div>
                         <div className="col-8">

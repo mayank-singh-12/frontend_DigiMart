@@ -71,7 +71,7 @@ export default function ProductDetail() {
       {productData && (
         <main className="container-fluid mt-3">
           <div className="row g-0 mb-4">
-            <div className="col-4 d-flex justify-content-center">
+            <div className="col-md-4 d-flex justify-content-center">
               <div style={{ width: "320px" }}>
                 <img
                   className="img-fluid w-100 rounded border align-self-center"
@@ -87,7 +87,7 @@ export default function ProductDetail() {
                 </div>
               </div>
             </div>
-            <div className="col-8">
+            <div className="col-md-8 mt-4 mt-md-0">
               <h1>{productData.title}</h1>
               <div className="d-flex">
                 <span className="m-0 me-2">{productData.rating}</span>
@@ -110,19 +110,19 @@ export default function ProductDetail() {
               </p>
               <hr />
               <div className="row">
-                <span className="col-2 text-center">
+                <span className="col text-center">
                   10 Days <br />
                   Returnable
                 </span>
-                <span className="col-2 text-center">
+                <span className="col text-center">
                   Pay on <br />
                   Delivery
                 </span>
-                <span className="col-2 text-center">
+                <span className="col text-center">
                   Free <br />
                   Delivery
                 </span>
-                <span className="col-2 text-center">
+                <span className="col text-center">
                   Secure <br />
                   Payment
                 </span>
@@ -150,7 +150,7 @@ export default function ProductDetail() {
             <h2>Similar Products</h2>
             <div className="d-flex flex-row overflow-auto gap-5 mt-3">
               {recommendedProducts.map((product) => (
-                <div className="col-2" key={product._id}>
+                <div key={product._id}>
                   <div
                     className="card shadow mb-5 bg-body-tertiary"
                     style={{ minWidth: "200px" }}

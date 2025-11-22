@@ -5,6 +5,12 @@ import useProducts from "../contexts/ProductsContext";
 import AddWishlist from "../components/AddWishlist";
 import AddCart from "../components/AddCart";
 
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 export default function ProductsListing() {
   const { filteredProducts, productLoading, productError } = useProducts();
 
@@ -16,25 +22,44 @@ export default function ProductsListing() {
     return categoriesArr.join(", ");
   }
 
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
+
   return (
     <>
       <Header searchBox={true} />
 
-      <main className="container-fluid">
-        <div className="mx-1">
-          <div className="row">
-            <ProductFilter bootstrapClass="col-2" />
-            <div className="col-10 mt-4">
-              {/* page heading  */}
-              <p>
-                <strong className="fs-4">Showing All Products</strong>{" "}
-                {filteredProducts.length != 0 && (
-                  <span className="ms-3">
-                    ( showing {filteredProducts.length} products )
-                  </span>
-                )}
-              </p>
+      <main className="container-fluid ">
+        <div className="mt-3">
+          <ThemeProvider theme={darkTheme}>
+            <Accordion>
+              <AccordionSummary
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
+                <Typography component="span">Filters</Typography>
+              </AccordionSummary>
 
+              <AccordionDetails>
+                <ProductFilter />
+              </AccordionDetails>
+            </Accordion>
+          </ThemeProvider>
+        </div>
+
+        <div className="mx-1 z-1">
+          <div className="row">
+            <div className="col mt-2">
+              {/* page heading  */}
+              <p className="fs-4 col-12 text-left">Showing All Products</p>{" "}
+              {filteredProducts.length != 0 && (
+                <p className="col-12">
+                  ( showing {filteredProducts.length} products )
+                </p>
+              )}
               {productLoading && (
                 <div
                   className="d-flex justify-content-center align-items-center"
@@ -45,13 +70,12 @@ export default function ProductsListing() {
                   </div>
                 </div>
               )}
-
               {/* products */}
               {filteredProducts.length != 0 ? (
                 <>
                   <div className="row">
                     {filteredProducts.map((product) => (
-                      <div className="col-3" key={product._id}>
+                      <div className="col-md-3" key={product._id}>
                         <div className="card shadow mb-4 bg-body-tertiary">
                           <Link
                             to={`/products/${product._id}`}

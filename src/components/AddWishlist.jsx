@@ -23,7 +23,7 @@ export default function AddWishlist({ product }) {
             removeFromWishlist(product)
           }}
         >
-          Remove from Wishlist
+          Remove Wishlist
         </button>
       ) : (
         <button

@@ -5,9 +5,6 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-// COMPONENTS
-import Header from "./components/Header";
-
 // PAGES
 import Home from "./pages/Home";
 import ProductsListing from "./pages/ProductsListing";

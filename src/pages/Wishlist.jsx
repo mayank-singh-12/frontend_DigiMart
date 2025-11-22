@@ -74,7 +74,7 @@ export default function Wishlist() {
             <p className="mt-5">No products in the Wishlist.</p>
           )}
           {wishlist.map((product) => (
-            <div className="col-2" key={product._id}>
+            <div className="col-md-2" key={product._id}>
               <div className="card shadow mb-5 bg-body-tertiary">
                 <Link
                   to={`/products/${product._id}`}
