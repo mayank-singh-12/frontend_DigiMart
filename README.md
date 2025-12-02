@@ -4,6 +4,7 @@ Your Digital Tech-hub
 An E-commerce web app that sells electronic products.
 
 Deployed Link: https://frontend-digi-mart.vercel.app/
+Demonstration Video: https://drive.google.com/file/d/1kJVI3qB8SCSSHhrzAu9Xv7qdCuEE09uQ/view?usp=sharing
 
 ### Common
 - Shows messages on performing different operations.
@@ -65,5 +66,3 @@ Deployed Link: https://frontend-digi-mart.vercel.app/
 - Shows Details of user.
 - Shows all the addresses.
 - Shows past orders.
-
-VIdeo Link: https://drive.google.com/file/d/1kJVI3qB8SCSSHhrzAu9Xv7qdCuEE09uQ/view?usp=sharing
