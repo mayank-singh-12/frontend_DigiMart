@@ -1,5 +1,4 @@
 # DigiMart
-Your Digital Tech-hub
 
 An E-commerce web app that sells electronic products.
 
