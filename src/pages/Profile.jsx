@@ -38,7 +38,7 @@ export default function Profile() {
             {/* All Address */}
             {addressArr.length > 0 && (
               <>
-                <div className="card mt-4" style={{ height: "56.3vh" }}>
+                <div className="card mt-4" style={{ maxHeight: "56.3vh" }}>
                   <div className="card-header">
                     <h1 className="card-title text-center">Address List</h1>
                   </div>
@@ -74,7 +74,7 @@ export default function Profile() {
                 {loading && (
                   <div
                     className="card-body d-flex overflow-auto justify-content-center align-items-center"
-                    style={{ height: "80vh" }}
+                    style={{ maxHeight: "80vh" }}
                   >
                     <div class="spinner-border" role="status">
                       <span class="visually-hidden">Loading...</span>

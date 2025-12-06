@@ -1,41 +1,76 @@
 # DigiMart
-Your Digital Tech-hub
 
-An E-commerce web app that sells electronic products.
+A Full-Stack E-commerce web app where you can buy electronic products, along with features like filtering and sorting products | wishlist, cart and address management.
 
-Deployed Link: https://frontend-digi-mart.vercel.app/
+Built with React frontend, Express/Node backend and MongoDB database.
 
-### Common
-- Shows messages on performing different operations.
- 
-### Header
-- Provides link to navigate to Wishlist.
-- Show live Wishlist count. 
-- Provides link to navigate to Cart.
-- Show live cart count. 
-- Provides link to navigate to profile page.
+---
 
-### Home page
+## Demo Link
+
+[Live Demo](https://frontend-digi-mart.vercel.app/)
+
+---
+
+## Quick Start
+
+```
+git clone https://github.com/mayank-singh-12/frontend_DigiMart.git
+cd frontend_DigiMart
+npm install
+npm run dev
+```
+
+---
+
+## Technologies
+
+- React
+- React Router
+- React-Toastify
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- Bootstrap
+- CSS
+
+---
+
+## Demo Video
+
+Watch a walkthrough (5-7 minutes) to walk through major features of this app:
+[YouTube Video](https://drive.google.com/file/d/1kJVI3qB8SCSSHhrzAu9Xv7qdCuEE09uQ/view?usp=sharing)
+
+---
+
+## Features
+
+**Home page**
+
 - Lists all categories.
 - Navigates Users to Products listing page with applied category filter.
 - Shows Star Product.
 - Shows Best Deal.
 
-### Products listing page
+**Products listing page**
+
 - Lists all the products.
-- Provides Search to search products. 
+- Provides Search to search products.
 - Provides button to add product to Wishlist.
 - Provides button to add product to Cart.
 - Provides filters to filter the product.
 - Navigates user to products detail page of selected product.
 
-### Product detail page
+**Product detail page**
+
 - Showcases details of product.
 - Provides button to add product to Wishlist.
 - Provides button to add product to Cart.
 - Shows similar products that fall in same category.
 
-### Wishlist
+**Wishlist**
+
 - Lists all the Wishlisted products.
 - Stored in Localstorage.
 - Shows a message if no product is present.
@@ -43,7 +78,8 @@ Deployed Link: https://frontend-digi-mart.vercel.app/
 - Provides button to remove from Wishlist.
 - Increases quantity of product in cart, if duplicate product is being added.
 
-### Cart
+**Cart**
+
 - Lists all the products in Cart.
 - Stored in Localstorage.
 - User can increment or decrement product quantity.
@@ -52,18 +88,39 @@ Deployed Link: https://frontend-digi-mart.vercel.app/
 - Provides button to remove from Cart.
 - Shows price details with live calculation.
 
-### Checkout page
+**Checkout page**
+
 - Shows final bill.
 - Provide add new address functionality to user.
-- User can select address from listed addresses. 
+- User can select address from listed addresses.
 
-### Order Success Page
+**Order Success Page**
+
 - Shows success message on successful order.
 - Provides a button to navigate to products listing page.
 
-### Profile
+**Profile**
+
 - Shows Details of user.
 - Shows all the addresses.
 - Shows past orders.
 
-VIdeo Link: https://drive.google.com/file/d/1kJVI3qB8SCSSHhrzAu9Xv7qdCuEE09uQ/view?usp=sharing
+---
+
+# API Reference
+Link to Backend Repo: 
+[API Repo](https://github.com/mayank-singh-12/backend_DigiMart)
+
+
+## Base API: https://backend-digi-mart.vercel.app/
+
+### GET /products
+List all products
+Sample Response:
+```
+
+```
+
+### GET /products/:productId
+Get details of product for one recipe
+

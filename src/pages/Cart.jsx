@@ -74,7 +74,7 @@ export default function Cart() {
           <p className="text-center mt-5">No products in the Cart.</p>
         ) : (
           <div className="row g-3">
-            <div className="col-md-4 col-12">
+            <div className="col-md-6 col-12">
               <div
                 className="card position-md-fixed shadow bg-body-tertiary"
                 style={{ minWidth: "32.5vw" }}
@@ -114,7 +114,7 @@ export default function Cart() {
                 </div>
               </div>
             </div>
-            <div className="col-md-8 col-12">
+            <div className="col-md-6 col-12">
               {cart.map((product) => (
                 <div key={product._id}>
                   <div className="card shadow mb-3 bg-body-tertiary">
