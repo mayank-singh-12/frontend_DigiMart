@@ -110,7 +110,7 @@ Watch a walkthrough (7 minutes 50 seconds) to walk through major features of thi
 # API Reference
 
 Link to Backend Repo:
-[API Repo](https://github.com/mayank-singh-12/backend_DigiMart)
+[API Repo](https://github.com/mayank-singh-12/backend_DigiMart.git)
 
 ## Base API: https://backend-digi-mart.vercel.app/
 
