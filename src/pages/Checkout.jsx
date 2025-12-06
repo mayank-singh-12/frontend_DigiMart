@@ -26,8 +26,6 @@ export default function Checkout() {
   const [editState, setEditState] = useState("");
   const [editCountry, setEditCountry] = useState("");
 
-  // console.log(cart);
-
   const deliveryCharges = 499;
   const subTotal = cart.reduce(
     (acc, curr) => acc + curr.discountedPrice * curr.quantity,
@@ -44,7 +42,7 @@ export default function Checkout() {
       state === "" ||
       country === ""
     ) {
-      return console.log("Please fill required fields.");
+      toast.error("Please fill required fields.");
     }
     const newAddress = {
       id: addressArr.length > 0 ? addressArr[addressArr.length - 1].id + 1 : 1,
@@ -175,7 +173,6 @@ export default function Checkout() {
         discountedPrice: product.discountedPrice,
       });
     }
-    console.log(orderDetails);
     try {
       const response = await fetch(
         "https://backend-digi-mart.vercel.app/orders",
