@@ -39,8 +39,8 @@ npm run dev
 
 ## Demo Video
 
-Watch a walkthrough (5-7 minutes) to walk through major features of this app:
-[YouTube Video](https://drive.google.com/file/d/1kJVI3qB8SCSSHhrzAu9Xv7qdCuEE09uQ/view?usp=sharing)
+Watch a walkthrough (7 minutes 50 seconds) to walk through major features of this app:
+[YouTube Video](https://www.youtube.com/watch?v=juiB4TiJEWg)
 
 ---
 
@@ -210,7 +210,7 @@ Sample Response:
 }
 ```
 
-### GET /orders/:categoryId
+### GET /orders
 
 Get list of recent orders<br>
 Sample Response:
@@ -220,7 +220,14 @@ Sample Response:
     orders:[
         {
             _id: ...,
-            products: [ { title: ..., quantity: ..., price: ..., discount: ..., discountedPrice: ... }, ... ],
+            products: [
+                {
+                    title: ...,
+                    quantity: ...,
+                    price: ...,
+                    discount: ...,
+                    discountedPrice: ...
+                }, ... ],
             shippingAddress: {
                 name: ...,
                 houseNo: ...,
@@ -236,3 +243,40 @@ Sample Response:
     ]
 }
 ```
+
+## POST /orders
+
+Save order<br>
+Sample Request Body:
+
+```
+{
+    message: "Successfully added new order!",
+    order: {
+            _id: ...,
+            products: [
+                {
+                    title: ...,
+                    quantity: ...,
+                    price: ...,
+                    discount: ...,
+                    discountedPrice: ...
+                }, ... ],
+            shippingAddress: {
+                name: ...,
+                houseNo: ...,
+                streetAddress: ...,
+                city: ...,
+                state: ...,
+                country: ...
+            },
+            subTotal: ...,
+            delivery: ...,
+            totalToPay: ...
+        }
+}
+```
+
+---
+
+For bugs or feature request, please reach out to dev.by.mayank@gmail.com
